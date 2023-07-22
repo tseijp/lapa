@@ -42,7 +42,8 @@ export const App = () => {
                         update()
                 },
         }) as any
-        const switchColor = (i) => {
+
+        const switchColor = (i: number) => {
                 switch (_.state[i]) {
                         case 0:
                                 return '#00e2e2'
@@ -56,84 +57,101 @@ export const App = () => {
                                 return '#e2e2e2'
                 }
         }
-        const w = '5rem'
+
         const repeat = `repeat(${_.l}, 1fr)`
 
-        return (
-                <div
-                        style={{
-                                ...flex,
-                                position: 'fixed',
-                                background: '#212121',
-                        }}
-                >
+        const Player0 = (i: number) => (
+                <div key={i} style={flex}>
+                        <div
+                                onClick={() => _.clickMine(0, i)}
+                                style={{
+                                        ...flex,
+                                        ...half,
+                                        background:
+                                                _.i === 0
+                                                        ? '#00e2e2'
+                                                        : '#002e2e',
+                                }}
+                        >
+                                {_._0[i]}
+                        </div>
+                </div>
+        )
+
+        const Player1 = (i) => (
+                <div onClick={() => _.clickMine(1, i)} key={i} style={flex}>
                         <div
                                 style={{
                                         ...flex,
-                                        flexDirection: 'row',
-                                        width: 'calc(100% - 10rem)',
-                                        height: '10rem',
+                                        ...half,
+                                        background:
+                                                _.i === 1
+                                                        ? '#e200e2'
+                                                        : '#2e002e',
                                 }}
                         >
-                                {range(_.n).map((i) => (
-                                        <div key={i} style={{ ...flex }}>
-                                                <div
-                                                        onClick={() =>
-                                                                _.clickMine(
-                                                                        2,
-                                                                        i
-                                                                )
-                                                        }
-                                                        style={{
-                                                                ...flex,
-                                                                width: '50%',
-                                                                height: '50%',
-                                                                background:
-                                                                        _.i ===
-                                                                        2
-                                                                                ? '#e2e200'
-                                                                                : '#2e2e00',
-                                                        }}
-                                                >
-                                                        {_._2[i]}
-                                                </div>
-                                        </div>
-                                ))}
+                                {_._1[i]}
                         </div>
+                </div>
+        )
+
+        const Player2 = (i: number) => (
+                <div key={i} style={flex}>
+                        <div
+                                onClick={() => _.clickMine(2, i)}
+                                style={{
+                                        ...flex,
+                                        ...half,
+                                        background:
+                                                _.i === 2
+                                                        ? '#e2e200'
+                                                        : '#2e2e00',
+                                }}
+                        >
+                                {_._2[i]}
+                        </div>
+                </div>
+        )
+
+        const Player3 = (i: number) => (
+                <div key={i} style={flex}>
+                        <div
+                                onClick={() => _.clickMine(3, i)}
+                                style={{
+                                        ...flex,
+                                        ...half,
+                                        background:
+                                                _.i === 3
+                                                        ? '#00e200'
+                                                        : '#002e00',
+                                }}
+                        >
+                                {_._3[i]}
+                        </div>
+                </div>
+        )
+
+        const Pad = (i: number) => (
+                <div key={i} style={flex}>
+                        <div
+                                onClick={() => _.clickPad(i)}
+                                style={{
+                                        ...flex,
+                                        ...half,
+                                        background: switchColor(i),
+                                }}
+                        >
+                                {_.pad[i]}
+                        </div>
+                </div>
+        )
+
+        return (
+                <div style={main}>
+                        <div style={p2}>{range(_.n).map(Player2)}</div>
                         <div style={{ ...flex, flexDirection: 'row' }}>
-                                <div
-                                        style={{
-                                                ...flex,
-                                                width: '10rem',
-                                        }}
-                                >
-                                        {range(_.n).map((i) => (
-                                                <div
-                                                        key={i}
-                                                        style={{ ...flex }}
-                                                >
-                                                        <div
-                                                                onClick={() =>
-                                                                        _.clickMine(
-                                                                                3,
-                                                                                i
-                                                                        )
-                                                                }
-                                                                style={{
-                                                                        ...flex,
-                                                                        width: '50%',
-                                                                        height: '50%',
-                                                                        background:
-                                                                                _.i ===
-                                                                                3
-                                                                                        ? '#00e200'
-                                                                                        : '#002e00',
-                                                                }}
-                                                        >
-                                                                {_._3[i]}
-                                                        </div>
-                                                </div>
-                                        ))}
+                                <div style={{ ...flex, width: '10rem' }}>
+                                        {range(_.n).map(Player3)}
                                 </div>
                                 <div
                                         style={{
@@ -144,99 +162,13 @@ export const App = () => {
                                                 gridTemplateColumns: repeat,
                                         }}
                                 >
-                                        {range(_.l ** 2).map((i) => (
-                                                <div
-                                                        key={i}
-                                                        style={{ ...flex }}
-                                                >
-                                                        <div
-                                                                onClick={() =>
-                                                                        _.clickPad(
-                                                                                i
-                                                                        )
-                                                                }
-                                                                style={{
-                                                                        ...flex,
-                                                                        width: '50%',
-                                                                        height: '50%',
-                                                                        background: switchColor(
-                                                                                i
-                                                                        ),
-                                                                }}
-                                                        >
-                                                                {_.pad[i]}
-                                                        </div>
-                                                </div>
-                                        ))}
+                                        {range(_.l ** 2).map(Pad)}
                                 </div>
-                                <div
-                                        style={{
-                                                ...flex,
-                                                width: '10rem',
-                                        }}
-                                >
-                                        {range(_.n).map((i) => (
-                                                <div
-                                                        onClick={() =>
-                                                                _.clickMine(
-                                                                        1,
-                                                                        i
-                                                                )
-                                                        }
-                                                        key={i}
-                                                        style={{ ...flex }}
-                                                >
-                                                        <div
-                                                                style={{
-                                                                        ...flex,
-                                                                        width: '50%',
-                                                                        height: '50%',
-                                                                        background:
-                                                                                _.i ===
-                                                                                1
-                                                                                        ? '#e200e2'
-                                                                                        : '#2e002e',
-                                                                }}
-                                                        >
-                                                                {_._1[i]}
-                                                        </div>
-                                                </div>
-                                        ))}
+                                <div style={{ ...flex, width: '10rem' }}>
+                                        {range(_.n).map(Player1)}
                                 </div>
                         </div>
-                        <div
-                                style={{
-                                        ...flex,
-                                        flexDirection: 'row',
-                                        width: 'calc(100% - 10rem)',
-                                        height: '10rem',
-                                }}
-                        >
-                                {range(_.n).map((i) => (
-                                        <div key={i} style={{ ...flex }}>
-                                                <div
-                                                        onClick={() =>
-                                                                _.clickMine(
-                                                                        0,
-                                                                        i
-                                                                )
-                                                        }
-                                                        style={{
-                                                                ...flex,
-                                                                width: '50%',
-                                                                height: '50%',
-                                                                background:
-                                                                        _.i ===
-                                                                        0
-                                                                                ? '#00e2e2'
-                                                                                : '#002e2e',
-                                                        }}
-                                                >
-                                                        {_._0[i]}
-                                                </div>
-                                        </div>
-                                ))}
-                        </div>
+                        <div style={row}>{range(_.n).map(Player0)}</div>
                 </div>
         )
 }
@@ -254,4 +186,29 @@ const flex = {
         flexDirection: 'column',
         justifyContent: 'center',
         boxSizing: 'border-box',
+} as React.CSSProperties
+
+const half = {
+        width: '50%',
+        height: '50%',
+} as React.CSSProperties
+
+const row = {
+        ...flex,
+        flexDirection: 'row',
+        width: 'calc(100% - 10rem)',
+        height: '10rem',
+} as React.CSSProperties
+
+const main = {
+        ...flex,
+        position: 'fixed',
+        background: '#212121',
+} as React.CSSProperties
+
+const p2 = {
+        ...flex,
+        flexDirection: 'row',
+        width: 'calc(100% - 10rem)',
+        height: '10rem',
 } as React.CSSProperties
