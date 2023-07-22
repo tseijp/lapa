@@ -2,30 +2,51 @@ export type GameType = 'basic' | 'kalah' | 'oware'
 
 export type Vec3 = [x: number, y: number, z: number]
 
-export type Stones = number[]
-
 export interface GameStatus {
-  capture: boolean
-  current: boolean
-  end: boolean
-  extra: boolean
-  next: boolean
-  start: boolean
-  move: number
-  size: number
-  seed: number
-  score: number[]
-  type: GameType
-  histories: History[]
+        pads: PadItems
+        users: UserItems
+        colors: string[]
+        l: number
+        m: number
+        n: number
+        t: number
+        alert(): void
+        update(): void
 }
 
-export interface History {
-  _: GameStatus
-  $: Stones
+export interface UserItems {
+        _: GameStatus
+        name: 'userItems'
+        items: UserItem[]
 }
 
-export interface GameState extends History {
-  click: unknown
-  reset: unknown
-  change: unknown
+export interface UserItem {
+        _: GameStatus
+        name: 'userItem'
+        parent: UserItems
+        index: number
+        v: number
+        i: number
+        c: number
+        x: number
+        y: number
+}
+
+export interface PadItems {
+        _: GameStatus
+        name: 'padItems'
+        items: PadItem[]
+        click(e: Event): void
+}
+
+export interface PadItem {
+        _: GameStatus
+        name: 'padItem'
+        parent: PadItems
+        visible: boolean
+        v: number
+        i: number
+        x: number
+        y: number
+        click(e: Event): void
 }
