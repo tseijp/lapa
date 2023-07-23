@@ -1,20 +1,18 @@
 import type { GameStatus, PadItem, UserItem } from './types'
 
-export const isBothPadItem = (_: GameStatus, self: PadItem) => {
-        return self._type === 'padItem' && _.select?._type === 'padItem'
+export const isSameItemType = (_: GameStatus, self: UserItem | PadItem) => {
+        return _.select?._type === self._type
 }
 
-export const isBothMineItem = (_: GameStatus, self: UserItem) => {
-        if (_.select?._type !== 'userItem') return false
-        return _.select?.pk === self.pk
-}
-
-export const isBothSameItem = (_: GameStatus, self: UserItem | PadItem) => {
+export const isSameItem = (_: GameStatus, self: UserItem | PadItem) => {
         return _.select === self
 }
 
 export const isVisibleItem = (_: GameStatus, self: UserItem | PadItem) => {
-        if (self.visible || _.select?.visible) {
+        if (
+                (self._type === 'padItem' && self.visible) ||
+                (self._type === 'padItem' && _.select?.visible)
+        ) {
                 alert('item is visible')
                 return true
         } else return false

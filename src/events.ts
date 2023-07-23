@@ -9,9 +9,8 @@ import {
         bubbleSortItems,
 } from './utils'
 import {
-        isBothMineItem,
-        isBothPadItem,
-        isBothSameItem,
+        isSameItem,
+        isSameItemType,
         isNotYourTurn,
         isInvalidItemType,
         isInvalidItemValue,
@@ -62,13 +61,13 @@ export const padItem = (_: GameStatus, other?: Partial<PadItem>) => {
                 ...other,
                 _type: 'padItem',
                 click() {
-                        if (isBothPadItem(_, self)) {
-                                _.select = self
+                        if (isSameItem(_, self)) {
+                                _.select = null
                                 _.update()
                                 return
                         }
-                        if (isBothSameItem(_, self)) {
-                                _.select = null
+                        if (isSameItemType(_, self)) {
+                                _.select = self
                                 _.update()
                                 return
                         }
@@ -106,12 +105,12 @@ export const userItem = (_: GameStatus, other?: Partial<UserItem>) => {
                 ...other,
                 _type: 'userItem',
                 click() {
-                        if (isBothSameItem(_, self)) {
+                        if (isSameItem(_, self)) {
                                 _.select = null
                                 _.update()
                                 return
                         }
-                        if (isBothMineItem(_, self)) {
+                        if (isSameItemType(_, self)) {
                                 _.select = self
                                 _.update()
                                 return
