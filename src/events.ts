@@ -72,10 +72,8 @@ export const padItem = (_: GameStatus, other?: Partial<PadItem>) => {
                                 return
                         }
                         if (isVisibleItem(_, self)) return
-                        else {
-                                if (isInvalidItemType(_, self)) return
-                                if (isInvalidItemValue(_, self)) return
-                        }
+                        if (isInvalidItemType(_, self)) return
+                        if (isInvalidItemValue(_, self)) return
                         if (_.select) {
                                 swapItemValue(_.select, self)
                                 bubbleSortItems(_.users[(_.t % 4) + 1].items)
@@ -117,10 +115,8 @@ export const userItem = (_: GameStatus, other?: Partial<UserItem>) => {
                         }
                         if (isNotYourTurn(_, self)) return
                         if (isVisibleItem(_, self)) return
-                        else {
-                                if (isInvalidItemType(_, self)) return
-                                if (isInvalidItemValue(_, self)) return
-                        }
+                        if (isInvalidItemType(_, self)) return
+                        if (isInvalidItemValue(_, self)) return
                         if (_.select) {
                                 swapItemValue(_.select, self)
                                 bubbleSortItems(_.users[(_.t % 4) + 1].items)

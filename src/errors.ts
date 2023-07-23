@@ -26,6 +26,11 @@ export const isNotYourTurn = (_: GameStatus, self: UserItem) => {
 }
 
 export const isInvalidItemType = (_: GameStatus, self: UserItem | PadItem) => {
+        if (
+                (self._type === 'padItem' && !self.visible) ||
+                (self._type === 'padItem' && !_.select?.visible)
+        )
+                return false
         if (_.select?.v === self.v) {
                 alert('select item value is not match')
                 return true

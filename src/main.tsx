@@ -23,6 +23,14 @@ createRoot(document.getElementById('root') as HTMLElement).render(
                         color="#eaeaea"
                         groundColor="blue"
                 />
+                <Effects disableGamma>
+                        {/* @ts-ignore */}
+                        <unrealBloomPass
+                                threshold={1}
+                                strength={1.0}
+                                radius={0.5}
+                        />
+                </Effects>
                 <axesHelper scale={2} />
                 <directionalLight
                         {...({ castShadow: true } as any)}
@@ -36,28 +44,20 @@ createRoot(document.getElementById('root') as HTMLElement).render(
                         m={8}
                         n={4}
                         t={0}
-                        w={1}
+                        w={1.05}
                         gap={0.1}
                         depth={0.5}
-                        padding={0.5}
+                        padding={0.65}
                 />
-                <Effects disableGamma>
-                        {/* @ts-ignore */}
-                        <unrealBloomPass
-                                threshold={1}
-                                strength={1.0}
-                                radius={0.5}
-                        />
-                </Effects>
-                <BakeShadows />
                 {/* @ts-ignore */}
                 <OrthographicCamera
                         makeDefault
                         far={100}
-                        near={0.1}
+                        near={0.05}
                         position={[0, 10, 0]}
-                        zoom={53}
+                        zoom={50}
                 />
                 <OrbitControls enableZoom={true} />
+                <BakeShadows />
         </Canvas>
 )

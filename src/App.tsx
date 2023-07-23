@@ -5,12 +5,6 @@ import { gameStatus, padItems, padItem, userItems, userItem } from './events'
 import { GameStatus, PadItems, PadItem, UserItems, UserItem } from './types'
 import { GameProvider, useGame, useDebugImage, useForceUpdate } from './hooks'
 import { bubbleSortItems, range } from './utils'
-// import { Color, MeshBasicMaterial } from 'three'
-
-// const glowRed = new MeshBasicMaterial({
-//         color: new Color(7, 0, 0.5),
-//         toneMapped: false,
-// })
 
 export const App = (props: Partial<GameStatus>) => {
         const [_] = useState(() => gameStatus(props))

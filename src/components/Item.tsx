@@ -20,7 +20,6 @@ export const Item = (props: ItemProps) => {
         return (
                 <mesh
                         position={[x, 0, y]}
-                        scale={0.8}
                         ref={self.ref}
                         onClick={self.click}
                         onPointerEnter={() => {
@@ -30,7 +29,7 @@ export const Item = (props: ItemProps) => {
                                 gsap.to(self.el.position, { y: 0 })
                         }}
                 >
-                        <boxGeometry />
+                        <boxGeometry args={[_.w, _.depth, _.w]} />
                         <meshBasicMaterial color={color} toneMapped={false} />
                 </mesh>
         )
@@ -38,6 +37,8 @@ export const Item = (props: ItemProps) => {
 
 const switchColor = (v: number) => {
         switch (v) {
+                case 0:
+                        return [226 / 255, 113 / 255, 113 / 255]
                 case 1:
                         return [0, 226 / 255, 226 / 255]
                 case 2:
