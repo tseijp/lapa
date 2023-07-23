@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Frame, Grid, Item } from './components'
+import { Html } from '@react-three/drei'
 import { gameStatus, padItems, padItem, userItems, userItem } from './events'
 import { GameStatus, PadItems, PadItem, UserItems, UserItem } from './types'
 import { GameProvider, useGame, useDebugImage, useForceUpdate } from './hooks'
-import { range } from './utils'
+import { bubbleSortItems, range } from './utils'
 // import { Color, MeshBasicMaterial } from 'three'
 
 // const glowRed = new MeshBasicMaterial({
@@ -13,9 +14,19 @@ import { range } from './utils'
 
 export const App = (props: Partial<GameStatus>) => {
         const [_] = useState(() => gameStatus(props))
+        _.update = useForceUpdate()
         // useDebugImage()
         return (
                 <GameProvider value={_}>
+                        <Html
+                                fullscreen
+                                style={{
+                                        fontSize: '2rem',
+                                        color: 'white',
+                                }}
+                        >
+                                t:{_.t}
+                        </Html>
                         <Pads />
                         <Frame />
                         <Users k={1} />
@@ -47,6 +58,10 @@ export const Pad = (props: Partial<PadItem>) => {
 export const Users = (props: Partial<UserItems>) => {
         const _ = useGame()
         const [self] = useState(() => userItems(_, props))
+        useEffect(() => {
+                bubbleSortItems(self.items)
+                _.update()
+        }, [])
         return (
                 <Grid self={self}>
                         {range(_.m).map((k) => (

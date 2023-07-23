@@ -1,4 +1,4 @@
-import type { Mesh } from 'three'
+import type { Mesh, ThreeEvent } from 'three'
 
 export type GameType = 'basic' | 'kalah' | 'oware'
 
@@ -20,6 +20,7 @@ export interface GameStatus {
         _size: number
         depth: number
         padding: number
+        select?: UserItem | PadItem | null
         alert(): void
         update(): void
 }
@@ -38,6 +39,7 @@ export interface UserItems {
 export interface UserItem {
         _: GameStatus
         _type: 'userItem'
+        visible: boolean
         index: number
         pk: number
         el: Mesh
@@ -48,6 +50,10 @@ export interface UserItem {
         c: number
         x: number
         y: number
+        r: number
+        g: number
+        b: number
+        click(e: ThreeEvent<MouseEvent>): void
         ref(el: Mesh): void
 }
 
@@ -57,7 +63,6 @@ export interface PadItems {
         items: PadItem[]
         x: 0
         y: 0
-        click(e: Event): void
 }
 
 export interface PadItem {
@@ -71,6 +76,9 @@ export interface PadItem {
         k: number
         x: number
         y: number
-        click(e: Event): void
+        r: number
+        g: number
+        b: number
+        click(e: ThreeEvent<MouseEvent>): void
         ref(el: Mesh): void
 }
