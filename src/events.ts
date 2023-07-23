@@ -1,54 +1,112 @@
 import { event } from 'reev'
 import { GameStatus, UserItems, UserItem, PadItems, PadItem } from './types'
+import { range } from './utils'
 
-export const gameStatus = (props?: Partial<GameStatus>) => {
-        const self = event({
-                ...props,
+export const gameStatus = (other?: Partial<GameStatus>) => {
+        const _ = event({
+                ...other,
         }) as GameStatus
-        return self
+        _._w = _.w + 2 * _.gap
+        _.size = _._w * _.l
+        _._size = _.size + 2 * (_._w + _.padding)
+        _.users = range(4).map(() => null)
+        console.log({ ..._ })
+        return _
 }
 
-export const padItems = (props?: Partial<PadItems>) => {
+export const padItems = (_: GameStatus, other?: Partial<PadItems>) => {
         const self = event({
-                name: 'padItems',
+                _type: 'padItems',
                 click() {
-                        self._.update()
+                        _.update()
                 },
-                ...props,
+                ...other,
         }) as PadItems
-        self._.pads = self
+        self.items = range(_.l ** 2).map(() => null)
+        self.x = self.y = 0
+        _.pads = self
         return self
 }
 
-export const padItem = (props?: Partial<PadItem>) => {
+export const padItem = (_: GameStatus, other?: Partial<PadItem>) => {
         const self = event({
-                name: 'padItem',
+                _type: 'padItem',
                 click() {
-                        self._.update()
+                        _.update()
                 },
-                ...props,
+                ...other,
         }) as PadItem
-        self.parent.items[self.i] = self
+        self.i = self.k % _.l
+        self.j = Math.floor(self.k / _.l)
+        self.x = ((self.i * 2 - _.l + 1) * _._w) / 2
+        self.y = ((self.j * 2 - _.l + 1) * _._w) / 2
+        _.pads.items[self.k] = self
         return self
 }
 
-export const userItems = (props?: Partial<UserItems>) => {
+export const userItems = (_: GameStatus, other?: Partial<UserItems>) => {
         const self = event({
-                name: 'userItems',
-                ...props,
+                _type: 'userItems',
+                ...other,
         }) as UserItems
-        self._.users = self
+        self.items = range(_.n).map(() => null)
+        ;[self.i, self.j] = switchItems(self.k)
+        ;[self.x, self.y] = [self.i, self.j].map(
+                (v) => (v * (_.size + _._w)) / 2
+        )
+        _.users[self.k] = self
         return self
 }
 
-export const userItem = (props?: Partial<UserItem>) => {
+export const userItem = (_: GameStatus, other?: Partial<UserItem>) => {
         const self = event({
-                name: 'userItem',
-                ...props,
+                _type: 'userItem',
+                ...other,
                 click() {
-                        self._.update()
+                        _.update()
+                },
+                ref(el) {
+                        if (el) self.el = el
                 },
         }) as UserItem
-        self.parent.items[self.index] = self
+        const dir = switchItemDir(self.pk)
+        ;[self.i, self.j] = dir.map((v) => {
+                if (v === 0) return 0
+                if (v < 0) return _.l - (self.k % _.l) - 1
+                return self.k % _.l
+        })
+        self.x = !dir[0] ? 0 : ((self.i * 2 - _.l + 1) * _._w) / 2
+        self.y = !dir[1] ? 0 : ((self.j * 2 - _.l + 1) * _._w) / 2
+        _.users[self.pk].items[self.k] = self
         return self
+}
+
+function switchItems(k: number) {
+        switch (k) {
+                case 1:
+                        return [0, 1]
+                case 2:
+                        return [1, 0]
+                case 3:
+                        return [0, -1]
+                case 4:
+                        return [-1, 0]
+                default:
+                        throw 'ERROR'
+        }
+}
+
+function switchItemDir(k: number) {
+        switch (k) {
+                case 1:
+                        return [1, 0]
+                case 2:
+                        return [0, -1]
+                case 3:
+                        return [-1, 0]
+                case 4:
+                        return [0, 1]
+                default:
+                        throw 'ERROR'
+        }
 }

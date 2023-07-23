@@ -31,3 +31,11 @@ export const main = {
         position: 'fixed',
         background: '#212121',
 } as React.CSSProperties
+
+export const canvas = {
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        position: 'fixed',
+} as React.CSSProperties
