@@ -30,11 +30,14 @@ export const padItems = (_: GameStatus, other?: Partial<PadItems>) => {
 
 export const padItem = (_: GameStatus, other?: Partial<PadItem>) => {
         const self = event({
+                ...other,
                 _type: 'padItem',
                 click() {
                         _.update()
                 },
-                ...other,
+                ref(el: Element) {
+                        if (el) self.el = el
+                },
         }) as PadItem
         self.i = self.k % _.l
         self.j = Math.floor(self.k / _.l)
@@ -60,23 +63,20 @@ export const userItems = (_: GameStatus, other?: Partial<UserItems>) => {
 
 export const userItem = (_: GameStatus, other?: Partial<UserItem>) => {
         const self = event({
-                _type: 'userItem',
                 ...other,
+                _type: 'userItem',
                 click() {
                         _.update()
                 },
-                ref(el) {
+                ref(el: Element) {
                         if (el) self.el = el
                 },
         }) as UserItem
-        const dir = switchItemDir(self.pk)
-        ;[self.i, self.j] = dir.map((v) => {
-                if (v === 0) return 0
-                if (v < 0) return _.l - (self.k % _.l) - 1
-                return self.k % _.l
-        })
-        self.x = !dir[0] ? 0 : ((self.i * 2 - _.l + 1) * _._w) / 2
-        self.y = !dir[1] ? 0 : ((self.j * 2 - _.l + 1) * _._w) / 2
+        const [dx, dy] = switchItemDir(self.pk)
+        self.i = !dx ? 0 : self.k % _.l
+        self.j = !dy ? 0 : self.k % _.l
+        self.x = (dx * ((self.i * 2 - _.l + 1) * _._w)) / 2
+        self.y = (dy * ((self.j * 2 - _.l + 1) * _._w)) / 2
         _.users[self.pk].items[self.k] = self
         return self
 }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Frame, Grid, Item } from './components'
 import { gameStatus, padItems, padItem, userItems, userItem } from './events'
 import { GameStatus, PadItems, PadItem, UserItems, UserItem } from './types'
-import { GameProvider, useGame, useDebugImage } from './hooks'
+import { GameProvider, useGame, useDebugImage, useForceUpdate } from './hooks'
 import { range } from './utils'
 // import { Color, MeshBasicMaterial } from 'three'
 
