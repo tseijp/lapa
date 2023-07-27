@@ -1,5 +1,4 @@
 import type { GameStatus, PadItem, UserItem } from './types'
-
 export const isSameItemType = (_: GameStatus, self: UserItem | PadItem) => {
         return _.select?._type === self._type
 }
@@ -11,7 +10,7 @@ export const isSameItem = (_: GameStatus, self: UserItem | PadItem) => {
 export const isVisibleItem = (_: GameStatus, self: UserItem | PadItem) => {
         if (
                 (self._type === 'padItem' && self.visible) ||
-                (self._type === 'padItem' && _.select?.visible)
+                (_.select?._type === 'padItem' && _.select?.visible)
         ) {
                 alert('item is visible')
                 return true
@@ -28,7 +27,7 @@ export const isNotYourTurn = (_: GameStatus, self: UserItem) => {
 export const isInvalidItemType = (_: GameStatus, self: UserItem | PadItem) => {
         if (
                 (self._type === 'padItem' && !self.visible) ||
-                (self._type === 'padItem' && !_.select?.visible)
+                (_.select?._type === 'padItem' && !_.select?.visible)
         )
                 return false
         if (_.select?.v === self.v) {

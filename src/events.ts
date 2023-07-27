@@ -7,6 +7,9 @@ import {
         userItemdxdy,
         swapItemValue,
         bubbleSortItems,
+        checkReach,
+        hasNextColor,
+        getCenterItems,
 } from './utils'
 import {
         isSameItem,
@@ -16,11 +19,34 @@ import {
         isInvalidItemValue,
         isVisibleItem,
 } from './errors'
+import type { Group } from 'three'
 
 export const gameStatus = (other?: Partial<GameStatus>) => {
         const _ = event({
+                ref(el: Group) {
+                        const loop = () => {
+                                _.timeoutId = setTimeout(() => {
+                                        _[`b${_.b}`]?.()
+                                        _.b = (_.b + 1) % _.beat
+                                        loop()
+                                }, 60000 / _.bpm)
+                        }
+                        if (el) {
+                                _.el = el
+                                loop()
+                        } else clearTimeout(_.timeoutId)
+                },
+                next() {
+                        const user = _.users[(_.t % 4) + 1]
+                        bubbleSortItems(user.items)
+                        user.reach = checkReach(user.items)
+                        if (user.reach) user.win = true
+                        _.select = null
+                        _.t++
+                },
                 ...other,
-        }) as GameStatus
+        }) as unknown as GameStatus
+        _.beat = _.m
         _._w = _.w + 2 * _.gap
         _.size = _._w * _.l
         _._size = _.size + 2 * (_._w + _.padding)
@@ -31,8 +57,13 @@ export const gameStatus = (other?: Partial<GameStatus>) => {
 export const padItems = (_: GameStatus, other?: Partial<PadItems>) => {
         const self = event({
                 _type: 'padItems',
-                click() {
-                        _.update()
+                ref(el: Group) {
+                        if (!el) return
+                        self.el = el
+                        getCenterItems(_).forEach((item) => {
+                                item.visible = true
+                        })
+                        self.update()
                 },
                 ...other,
         }) as PadItems
@@ -45,6 +76,13 @@ export const padItems = (_: GameStatus, other?: Partial<PadItems>) => {
 export const userItems = (_: GameStatus, other?: Partial<UserItems>) => {
         const self = event({
                 _type: 'userItems',
+                ref(el: Group) {
+                        if (!el) return
+                        self.el = el
+                        bubbleSortItems(self.items)
+                        if (checkReach(self.items)) self.reach = true
+                        _.update()
+                },
                 ...other,
         }) as UserItems
         self.items = range(_.n).map(() => null)
@@ -63,23 +101,20 @@ export const padItem = (_: GameStatus, other?: Partial<PadItem>) => {
                 click() {
                         if (isSameItem(_, self)) {
                                 _.select = null
-                                _.update()
-                                return
+                                return _.update()
                         }
                         if (isSameItemType(_, self)) {
                                 _.select = self
-                                _.update()
-                                return
+                                return _.update()
                         }
                         if (isVisibleItem(_, self)) return
                         if (isInvalidItemType(_, self)) return
                         if (isInvalidItemValue(_, self)) return
+                        if (!hasNextColor(_, self)) return
                         if (_.select) {
                                 swapItemValue(_.select, self)
-                                bubbleSortItems(_.users[(_.t % 4) + 1].items)
-                                _.t++
                                 self.visible = true
-                                _.select = null
+                                _.next()
                         } else {
                                 _.select = self
                         }
@@ -118,18 +153,29 @@ export const userItem = (_: GameStatus, other?: Partial<UserItem>) => {
                         if (isInvalidItemType(_, self)) return
                         if (isInvalidItemValue(_, self)) return
                         if (_.select) {
+                                if (!hasNextColor(_, _.select)) return
                                 swapItemValue(_.select, self)
-                                bubbleSortItems(_.users[(_.t % 4) + 1].items)
-                                _.t++
                                 _.select.visible = true
-                                _.select = null
+                                _.next()
                         } else {
                                 _.select = self
                         }
                         _.update()
                 },
                 ref(el: Element) {
-                        if (el) self.el = el
+                        const i = self.i || self.j
+                        const fun = () => {
+                                self.active = _.b === i
+                                if ((_.t % 4) + 1 !== self.pk)
+                                        self.active = false
+                                else if (self.active) _[`l${self.v}`]?.()
+                                self.update()
+                                _({ [`b${(i + 1) % _.beat}`]: fun })
+                        }
+                        if (el) {
+                                self.el = el
+                                _({ [`b${i % _.beat}`]: fun })
+                        }
                 },
         }) as UserItem
         const [dx, dy] = userItemdxdy(self.pk)
@@ -138,6 +184,7 @@ export const userItem = (_: GameStatus, other?: Partial<UserItem>) => {
         self.v = rand(_.n)
         self.x = (dx * ((self.i * 2 - _.l + 1) * _._w)) / 2
         self.y = (dy * ((self.j * 2 - _.l + 1) * _._w)) / 2
+        self.visible = true
         _.users[self.pk].items[self.k] = self
         return self
 }

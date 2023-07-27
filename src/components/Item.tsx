@@ -1,10 +1,15 @@
 import { gsap } from 'gsap'
 // import { Html } from '@react-three/drei'
-import type { ReactNode } from 'react'
-import type { GameStatus, PadItem, UserItem } from '../types'
+import {
+        switchPadLuminance,
+        switchUserLuminance,
+        changeLuminance,
+} from '../colors'
 import { useGame } from '../hooks'
-
-export interface ItemProps {
+import type { ReactNode } from 'react'
+import type { PadItem, UserItem } from '../types'
+import type { MeshProps } from '@react-three/fiber'
+export interface ItemProps extends MeshProps {
         children?: ReactNode
         self: PadItem | UserItem | null
 }
@@ -13,14 +18,16 @@ export const Item = (props: ItemProps) => {
         const { self } = props
         const { x, y } = self
         const _ = useGame()
-        const color =
-                self._type === 'userItem'
-                        ? switchUserColor(_, self)
-                        : switchPadColor(_, self)
+        const baseColor = _.colors[self.visible ? self.v : -1] || [1, 1, 1]
+        const luminance =
+                self._type === 'padItem'
+                        ? switchPadLuminance(_, self)
+                        : switchUserLuminance(_, self)
+        const color = changeLuminance(baseColor, luminance)
         return (
                 <mesh
-                        position={[x, 0, y]}
                         ref={self.ref}
+                        position={[x, 0, y]}
                         onClick={self.click}
                         onPointerEnter={() => {
                                 gsap.to(self.el.position, { y: -0.2 })
@@ -33,41 +40,4 @@ export const Item = (props: ItemProps) => {
                         <meshBasicMaterial color={color} toneMapped={false} />
                 </mesh>
         )
-}
-
-const switchColor = (v: number) => {
-        switch (v) {
-                case 0:
-                        return [226 / 255, 113 / 255, 113 / 255]
-                case 1:
-                        return [0, 226 / 255, 226 / 255]
-                case 2:
-                        return [226 / 255, 0, 226 / 255]
-                case 3:
-                        return [226 / 255, 226 / 255, 0]
-                case 4:
-                        return [0, 226 / 255, 0]
-                default:
-                        return [226 / 255, 226 / 255, 226 / 255]
-        }
-}
-
-const switchUserColor = (_: GameStatus, self: UserItem) => {
-        const { v, pk } = self
-        let ret = switchColor(v)
-        if ((_.t % 4) + 1 !== pk) ret = changeColor(ret, 0.1)
-        if (_.select === self) ret = changeColor(ret, 3)
-        return ret
-}
-
-const switchPadColor = (_: GameStatus, self: PadItem) => {
-        const { v, visible } = self
-        let ret = switchColor(v)
-        if (!visible) ret = [226 / 255, 226 / 255, 226 / 255]
-        if (_.select === self) ret = changeColor(ret, 3)
-        return ret
-}
-
-const changeColor = (color: number[], rate: number) => {
-        return color.map((v) => v * rate)
 }

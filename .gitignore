@@ -1,5 +1,9 @@
 # My created
 
+assets/**/*
+public/**/*
+!public/*.gltf
+*.blend
 **/*tmp*
 
 # Logs
