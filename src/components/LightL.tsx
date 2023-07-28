@@ -3,6 +3,7 @@ import { changeLuminance } from '../colors'
 import { useMemo, useRef, useState } from 'react'
 import { GroupProps } from '@react-three/fiber'
 import { useGame } from '../hooks'
+import type { Color } from '../types'
 import type { Group } from 'three'
 import { range } from '../utils'
 const { PI } = Math
@@ -13,7 +14,7 @@ export interface LightLProps extends GroupProps {
 
 export const LightL = (props: LightLProps) => {
         const _ = useGame()
-        const [color, set] = useState([1, 1, 1])
+        const [color, set] = useState([1, 1, 1] as Color)
         const {
                 x,
                 y,
@@ -49,7 +50,7 @@ export const LightL = (props: LightLProps) => {
                         collapsed: true,
                 }
         )
-        const args = [1 / 40, 1 / 40, s, 8]
+        const args = [1 / 40, 1 / 40, s, 8] as any
         const neonColor = useMemo(
                 () => changeLuminance(color, luminance),
                 [color, luminance]
@@ -59,7 +60,8 @@ export const LightL = (props: LightLProps) => {
                         ref.el = el
                         _(
                                 range(_.n).reduce((acc, k) => {
-                                        acc[`l${k}`] = () => set(_.colors[k])
+                                        acc[`l${k}`] = () =>
+                                                set(_.colors[k] as Color)
                                         return acc
                                 }, {})
                         )
@@ -76,7 +78,6 @@ export const LightL = (props: LightLProps) => {
                         ref={ref}
                 >
                         <pointLight
-                                // @ts-ignore
                                 intensity={intensity}
                                 distance={distance}
                                 decay={decay}

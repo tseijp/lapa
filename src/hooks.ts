@@ -25,3 +25,11 @@ export const useDebugImage = (src = 'https://i.imgur.com/spvdSgJ.jpg') => {
                 document.body.appendChild(el)
         }, [src])
 }
+
+export const useLocationSearch = () => {
+        const ret = {}
+        new URLSearchParams(window.location.search).forEach((v, i) => {
+                ret[i] = v
+        })
+        return ret as any
+}

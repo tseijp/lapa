@@ -1,5 +1,7 @@
 import { EventState } from 'reev'
-import type { Mesh, Group, ThreeEvent } from 'three'
+import type { Mesh, Group } from 'three'
+
+export type Color = [r: number, g: number, b: number]
 
 export type GameType = 'basic' | 'kalah' | 'oware'
 
@@ -27,11 +29,15 @@ export interface GameStatus extends EventState<object> {
         bpm: number
         beat: number
         timeoutId: number
-        select?: UserItem | PadItem | null
+        select?: PadItem | null
+        _select?: PadItem | null
+        hovered?: PadItems | UserItems | null
+        _hovered?: PadItems | UserItems | null
         alert(): void
         update(): void
+        current(): void
         next(): void
-        ref(el: Group): void
+        ref: any
 }
 
 export interface UserItems {
@@ -48,7 +54,7 @@ export interface UserItems {
         x: number
         y: number
         update(): void
-        ref(el: Mesh): void
+        ref: any
 }
 
 export interface UserItem {
@@ -71,7 +77,7 @@ export interface UserItem {
         g: number
         b: number
         update(): void
-        click(e: ThreeEvent<MouseEvent>): void
+        click(e: any): void
         ref(el: Mesh): void
 }
 
@@ -83,8 +89,9 @@ export interface PadItems {
         flash: boolean
         x: 0
         y: 0
+        k: 0
         update(): void
-        ref(el: Mesh): void
+        ref: any
 }
 
 export interface PadItem {
@@ -103,6 +110,6 @@ export interface PadItem {
         g: number
         b: number
         update(): void
-        click(e: ThreeEvent<MouseEvent>): void
-        ref(el: Mesh): void
+        click(e: any): void
+        ref: any
 }

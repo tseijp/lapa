@@ -19,6 +19,7 @@ export const Avatars = (props: GroupProps) => {
         }, [actions, names])
 
         return (
+                // @ts-ignore
                 <group {...props} ref={ref}>
                         <group
                                 position={[1.989, 0.088, -2.464]}
@@ -27,7 +28,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_07_1003.geometry
                                         }
@@ -41,7 +41,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_07_1003_1
                                                         .geometry
@@ -57,7 +56,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_07_1003_2
                                                         .geometry
@@ -73,7 +71,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_07_1003_3
                                                         .geometry
@@ -89,7 +86,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_07_1003_4
                                                         .geometry
@@ -105,7 +101,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_07_1003_5
                                                         .geometry
@@ -128,7 +123,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips_1} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_06_1001.geometry
                                         }
@@ -157,7 +151,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_06_1001_2
                                                         .geometry
@@ -173,7 +166,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_06_1001_3
                                                         .geometry
@@ -189,7 +181,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_06_1001_4
                                                         .geometry
@@ -205,7 +196,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_06_1001_5
                                                         .geometry
@@ -228,7 +218,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips_2} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_05_1003.geometry
                                         }
@@ -242,7 +231,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_05_1003_1
                                                         .geometry
@@ -273,7 +261,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_05_1003_3
                                                         .geometry
@@ -289,7 +276,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_05_1003_4
                                                         .geometry
@@ -340,7 +326,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_04_1001_2
                                                         .geometry
@@ -356,7 +341,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_04_1001_3
                                                         .geometry
@@ -387,7 +371,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_04_1001_5
                                                         .geometry
@@ -410,7 +393,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips_4} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_03_1001.geometry
                                         }
@@ -424,7 +406,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_03_1001_1
                                                         .geometry
@@ -440,7 +421,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_03_1001_2
                                                         .geometry
@@ -456,7 +436,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_03_1001_3
                                                         .geometry
@@ -472,7 +451,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_03_1001_4
                                                         .geometry
@@ -495,7 +473,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips_5} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_02_3001.geometry
                                         }
@@ -509,7 +486,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_02_3001_1
                                                         .geometry
@@ -525,7 +501,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_02_3001_2
                                                         .geometry
@@ -541,7 +516,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_02_3001_3
                                                         .geometry
@@ -560,7 +534,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips_6} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_02_1001.geometry
                                         }
@@ -574,7 +547,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_02_1001_1
                                                         .geometry
@@ -590,7 +562,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_02_1001_2
                                                         .geometry
@@ -606,7 +577,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_02_1001_3
                                                         .geometry
@@ -622,7 +592,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_02_1001_4
                                                         .geometry
@@ -638,7 +607,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_02_1001_5
                                                         .geometry
@@ -661,7 +629,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips_7} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_01_1001.geometry
                                         }
@@ -720,7 +687,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_01_1001_4
                                                         .geometry
@@ -736,7 +702,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_01_1001_5
                                                         .geometry
@@ -759,7 +724,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips_8} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_01_1003_1
                                                         .geometry
@@ -775,7 +739,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_01_1003_2
                                                         .geometry
@@ -791,7 +754,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_01_1003_3
                                                         .geometry
@@ -807,7 +769,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_01_1003_4
                                                         .geometry
@@ -823,7 +784,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_01_1003_5
                                                         .geometry
@@ -839,7 +799,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Woman_01_1003_6
                                                         .geometry
@@ -862,7 +821,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips_9} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={nodes.DFS_Man_16001.geometry}
                                         material={
                                                 materials[
@@ -884,7 +842,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Man_16001_2.geometry
                                         }
@@ -894,7 +851,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Man_16001_3.geometry
                                         }
@@ -915,7 +871,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips_10} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={nodes.DFS_Man_13001.geometry}
                                         material={
                                                 materials[
@@ -925,7 +880,6 @@ export const Avatars = (props: GroupProps) => {
                                         skeleton={nodes.DFS_Man_13001.skeleton}
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Man_13001_1.geometry
                                         }
@@ -937,7 +891,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Man_13001_2.geometry
                                         }
@@ -947,7 +900,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Man_13001_3.geometry
                                         }
@@ -961,7 +913,6 @@ export const Avatars = (props: GroupProps) => {
                                         }
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Man_13001_4.geometry
                                         }
@@ -982,7 +933,6 @@ export const Avatars = (props: GroupProps) => {
                         >
                                 <primitive object={nodes.mixamorigHips_11} />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={nodes.DFS_Man_12001.geometry}
                                         material={
                                                 materials[
@@ -992,7 +942,6 @@ export const Avatars = (props: GroupProps) => {
                                         skeleton={nodes.DFS_Man_12001.skeleton}
                                 />
                                 <skinnedMesh // @ts-ignore
-                                        // @ts-ignore
                                         geometry={
                                                 nodes.DFS_Man_12001_1.geometry
                                         }

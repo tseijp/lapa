@@ -8,18 +8,16 @@ import {
         swapItemValue,
         bubbleSortItems,
         checkReach,
-        hasNextColor,
+        checkWin,
         getCenterItems,
 } from './utils'
 import {
-        isSameItem,
-        isSameItemType,
         isNotYourTurn,
-        isInvalidItemType,
-        isInvalidItemValue,
-        isVisibleItem,
+        isVisibleNextColor,
+        isVisiblePadItem,
+        isPairingPadItem,
 } from './errors'
-import type { Group } from 'three'
+import type { Group, Mesh } from 'three'
 
 export const gameStatus = (other?: Partial<GameStatus>) => {
         const _ = event({
@@ -36,11 +34,15 @@ export const gameStatus = (other?: Partial<GameStatus>) => {
                                 loop()
                         } else clearTimeout(_.timeoutId)
                 },
+                current() {
+                        const user = _.users[(_.t % 4) + 1]
+                        if (!user.reach) return
+                        user.win = checkWin(user.items, _.select)
+                },
                 next() {
                         const user = _.users[(_.t % 4) + 1]
                         bubbleSortItems(user.items)
                         user.reach = checkReach(user.items)
-                        if (user.reach) user.win = true
                         _.select = null
                         _.t++
                 },
@@ -60,8 +62,9 @@ export const padItems = (_: GameStatus, other?: Partial<PadItems>) => {
                 ref(el: Group) {
                         if (!el) return
                         self.el = el
-                        getCenterItems(_).forEach((item) => {
+                        getCenterItems(_).forEach((item, i) => {
                                 item.visible = true
+                                item.v = i % _.n
                         })
                         self.update()
                 },
@@ -99,28 +102,16 @@ export const padItem = (_: GameStatus, other?: Partial<PadItem>) => {
                 ...other,
                 _type: 'padItem',
                 click() {
-                        if (isSameItem(_, self)) {
-                                _.select = null
-                                return _.update()
-                        }
-                        if (isSameItemType(_, self)) {
-                                _.select = self
-                                return _.update()
-                        }
-                        if (isVisibleItem(_, self)) return
-                        if (isInvalidItemType(_, self)) return
-                        if (isInvalidItemValue(_, self)) return
-                        if (!hasNextColor(_, self)) return
-                        if (_.select) {
-                                swapItemValue(_.select, self)
-                                self.visible = true
-                                _.next()
-                        } else {
-                                _.select = self
-                        }
+                        if (_.select) return
+                        if (!isVisibleNextColor(_, self)) return
+                        if (isPairingPadItem(_, self)) return
+                        if (isVisiblePadItem(_, self)) return
+                        _.select = self
+                        _.select.visible = true
+                        _.current()
                         _.update()
                 },
-                ref(el: Element) {
+                ref(el: Mesh) {
                         if (el) self.el = el
                 },
         }) as PadItem
@@ -138,31 +129,15 @@ export const userItem = (_: GameStatus, other?: Partial<UserItem>) => {
                 ...other,
                 _type: 'userItem',
                 click() {
-                        if (isSameItem(_, self)) {
-                                _.select = null
-                                _.update()
-                                return
-                        }
-                        if (isSameItemType(_, self)) {
-                                _.select = self
-                                _.update()
-                                return
-                        }
+                        if (!_.select) return
                         if (isNotYourTurn(_, self)) return
-                        if (isVisibleItem(_, self)) return
-                        if (isInvalidItemType(_, self)) return
-                        if (isInvalidItemValue(_, self)) return
-                        if (_.select) {
-                                if (!hasNextColor(_, _.select)) return
-                                swapItemValue(_.select, self)
-                                _.select.visible = true
-                                _.next()
-                        } else {
-                                _.select = self
-                        }
+                        swapItemValue(_.select, self)
+                        _._select = _.select
+                        _.select = null
+                        _.next()
                         _.update()
                 },
-                ref(el: Element) {
+                ref(el: Mesh) {
                         const i = self.i || self.j
                         const fun = () => {
                                 self.active = _.b === i
