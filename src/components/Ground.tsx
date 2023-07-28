@@ -26,8 +26,9 @@ export const Ground = (props: GroundProps) => {
                 }
         )
         return (
+                // @ts-ignore
                 <mesh
-                        {...props} // @ts-ignore
+                        {...props}
                         geometry={nodes.Object.geometry}
                         rotation={[-Math.PI / 2, 0, 0]}
                 >

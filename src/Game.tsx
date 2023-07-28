@@ -13,7 +13,7 @@ import {
 import { Html } from '@react-three/drei'
 import { gameStatus, padItems, padItem, userItems, userItem } from './events'
 import { GameStatus, PadItems, PadItem, UserItems, UserItem } from './types'
-import { GameProvider, useGame, useDebugImage, useForceUpdate } from './hooks'
+import { GameProvider, useGame, useForceUpdate } from './hooks'
 import { range } from './utils'
 
 const { PI } = Math
@@ -21,7 +21,6 @@ const { PI } = Math
 export const Game = (props: Partial<GameStatus>) => {
         const [_] = useState(() => gameStatus(props))
         _.update = useForceUpdate()
-        // useDebugImage()
         return (
                 <GameProvider value={_}>
                         <Html
@@ -42,25 +41,25 @@ export const Game = (props: Partial<GameStatus>) => {
                                 {_.users?.[3]?.reach && " 3's reach"}
                                 <br />
                                 {_.users?.[4]?.reach && " 4's reach"}
-                                {/* <br />
+                                <br />
                                 {_.users?.[1]?.win && " 1's win"}
                                 <br />
                                 {_.users?.[2]?.win && " 2's win"}
                                 <br />
                                 {_.users?.[3]?.win && " 3's win"}
                                 <br />
-                                {_.users?.[4]?.win && " 4's win"} */}
+                                {_.users?.[4]?.win && " 4's win"}
                         </Html>
                         <group ref={_.ref}>
                                 <Pads />
-                                {range(_.l).map((k) => (
+                                {/* {range(_.l).map((k) => (
                                         <LightL key={k} z={2 + k * 2} />
                                 ))}
                                 <LightM />
                                 <LightS />
                                 <Avatars position-y={-1.36} />
                                 <Ground mirror={1} position-y={-1.36} />
-                                <Model position-y={-1.36} />
+                                <Model position-y={-1.36} /> */}
                         </group>
                 </GameProvider>
         )

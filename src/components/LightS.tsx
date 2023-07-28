@@ -3,7 +3,7 @@ import { useControls } from 'leva'
 import { changeLuminance } from '../colors'
 import { useMemo, useRef, useState } from 'react'
 import { useGame } from '../hooks'
-import type { Group } from 'three'
+import type { PointLight } from 'three'
 import { range } from '../utils'
 
 const { PI } = Math
@@ -53,7 +53,7 @@ export const LightS = (props: LightSProps) => {
                 () => changeLuminance(color, luminance),
                 [color, luminance]
         )
-        const ref = useRef((el: Group) => {
+        const ref = useRef((el: PointLight) => {
                 if (el) {
                         // Strobe effect
                         const sec = 60000 / _.bpm / _.n

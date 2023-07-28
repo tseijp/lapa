@@ -55,34 +55,29 @@ export const bubbleSortItems = (items: (UserItem | PadItem)[]) => {
                                 swapItemValue(items[j], items[j + 1])
 }
 
-export const checkReach = (items: UserItem[]) => {
+export const checkPair = (...items: (UserItem | PadItem)[]) => {
         const obj = {}
         items.forEach(({ v }) => (obj[v] = obj[v] ? obj[v] + 1 : 1))
-        const [a, b, c, d] = Object.values(obj).sort()
+        return Object.values(obj).sort()
+}
+
+export const checkReach = (items: UserItem[]) => {
+        const [a, b, c, d] = checkPair(...items)
         return (
                 (a === 2 && b === 3 && c === 3 && !d) ||
+                (a === 3 && b === 5 && !c) ||
                 (a === 2 && b === 6 && !c)
         )
 }
 
-// @TODO FIX
-// export const checkPair = (_: GameStatus, self: PadItem | UserItem) => {
-//         if (self._type === 'userItem') return false
-//         const getPair = (di = 0, dj = 0, ...pair: PadItem[]) => {
-//                 const next = getNextItem(di, dj, _, pair[0])
-//                 if (!next || pair[0].v !== next.v) return null
-//                 if (pair.length >= 2) return [next, ...pair]
-//                 return getPair(di, dj, next, ...pair)
-//         }
-//         const pair =
-//                 getPair(0, -1, self) ||
-//                 getPair(-1, 0, self) ||
-//                 getPair(0, 1, self) ||
-//                 getPair(1, 0, self)
-//         if (!pair) return false
-//         self._.pads.pair.push(...pair) // side effect !!
-//         return true
-// }
+export const checkWin = (items: UserItem[], select: PadItem) => {
+        const [a, b, c, d] = checkPair(...items, select)
+        return (
+                (a === 3 && b === 3 && c === 3 && !d) ||
+                (a === 3 && b === 6 && !c) ||
+                (a === 9 && !b)
+        )
+}
 
 export const getNextItem = (
         di = 0,
@@ -107,28 +102,6 @@ export const getNextItems = (_: GameStatus, self: PadItem) => {
         ]
 }
 
-export const hasNextColor = (_: GameStatus, self: PadItem | UserItem) => {
-        if (self._type === 'userItem') return false
-        const items = _.users[(_.t % 4) + 1]?.items
-        const nexts = getNextItems(_, self)
-        return nexts.some(
-                (item) =>
-                        item &&
-                        item.visible &&
-                        items.filter(({ v }) => v === item.v).length >= 3
-                // items.some(({ v }) => v === item.v)
-        )
-}
-// export const hasNextColor = (_: GameStatus, self: PadItem) => {
-//         const items = _.users[(_.t % 4) + 1]?.items
-//         if (!items) return false
-//         console.log(
-//                 items.map(({ v }) => v),
-//                 self.v
-//         )
-//         return !items.some(({ v }) => v === self.v)
-// }
-
 export const getCenterItems = (_: GameStatus) => {
         const h = Math.floor(_.l / 2)
         const a = _.l * (h - 1) + h - 1
@@ -137,3 +110,22 @@ export const getCenterItems = (_: GameStatus) => {
         const d = _.l * h + h
         return [a, b, c, d].map((k) => _.pads.items[k])
 }
+
+// @TODO FIX
+// export const checkPair = (_: GameStatus, self: PadItem | UserItem) => {
+//         if (self._type === 'userItem') return false
+//         const getPair = (di = 0, dj = 0, ...pair: PadItem[]) => {
+//                 const next = getNextItem(di, dj, _, pair[0])
+//                 if (!next || pair[0].v !== next.v) return null
+//                 if (pair.length >= 2) return [next, ...pair]
+//                 return getPair(di, dj, next, ...pair)
+//         }
+//         const pair =
+//                 getPair(0, -1, self) ||
+//                 getPair(-1, 0, self) ||
+//                 getPair(0, 1, self) ||
+//                 getPair(1, 0, self)
+//         if (!pair) return false
+//         self._.pads.pair.push(...pair) // side effect !!
+//         return true
+// }

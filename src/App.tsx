@@ -7,9 +7,12 @@ import {
 import { Canvas } from '@react-three/fiber'
 import { canvas } from './styles'
 import { Game } from './Game'
+import { useLocationSearch } from './hooks'
 import { useControls as _, Leva } from 'leva'
+import type { Color } from './types'
 
 export const App = () => {
+        const search = useLocationSearch()
         return (
                 <>
                         <Leva flat collapsed />
@@ -18,6 +21,7 @@ export const App = () => {
                                 gl={{ antialias: false }}
                                 style={canvas}
                         >
+                                {/* @ts-ignore */}
                                 <color attach="background" args={['#202030']} />
                                 <fog attach="fog" args={['#202030', 10, 25]} />
                                 <ambientLight />
@@ -52,27 +56,56 @@ export const App = () => {
                                 />
                                 <Game
                                         b={0}
-                                        l={8}
-                                        m={8}
-                                        n={4}
-                                        r={3}
+                                        l={0 + search.l || 8}
+                                        m={0 + search.m || 8}
+                                        n={0 + search.n || 4}
                                         t={0}
                                         w={1.05}
-                                        bpm={128}
+                                        bpm={0 + search.bpm || 128}
                                         gap={0.1}
                                         depth={0.5}
                                         padding={0.65}
-                                        colors={[
-                                                [255 / 255, 0 / 255, 255 / 255], // 250 hsl(300, 100%, 50%)
-                                                [255 / 255, 213 / 255, 0 / 255], // 50 hsl( 50, 100%, 50%)ß
-                                                [0 / 255, 170 / 255, 255 / 255], // 100 hsl(200, 100%, 50%) ???
-                                                [42 / 255, 0 / 255, 255 / 255], // 250 hsl(250, 100%, 50%)
-                                                [0 / 255, 255 / 255, 128 / 255], // 200 hsl(150, 100%, 50%) bad color
-                                                [85 / 255, 255 / 255, 0 / 255], // 100 hsl(100, 100%, 50%) bad color
-                                                [255 / 255, 0 / 255, 0 / 255], // 0 hsl(  0, 100%, 50%) bad color
-                                                [0, 0, 0],
-                                                [1, 1, 1],
-                                        ]}
+                                        colors={
+                                                [
+                                                        [
+                                                                255 / 255,
+                                                                0 / 255,
+                                                                255 / 255,
+                                                        ], // 250 hsl(300, 100%, 50%)
+                                                        [
+                                                                255 / 255,
+                                                                213 / 255,
+                                                                0 / 255,
+                                                        ], // 50 hsl( 50, 100%, 50%)ß
+                                                        [
+                                                                0 / 255,
+                                                                170 / 255,
+                                                                255 / 255,
+                                                        ], // 100 hsl(200, 100%, 50%) ???
+                                                        [
+                                                                42 / 255,
+                                                                0 / 255,
+                                                                255 / 255,
+                                                        ], // 250 hsl(250, 100%, 50%)
+                                                        [
+                                                                0 / 255,
+                                                                255 / 255,
+                                                                128 / 255,
+                                                        ], // 200 hsl(150, 100%, 50%) bad color
+                                                        [
+                                                                85 / 255,
+                                                                255 / 255,
+                                                                0 / 255,
+                                                        ], // 100 hsl(100, 100%, 50%) bad color
+                                                        [
+                                                                255 / 255,
+                                                                0 / 255,
+                                                                0 / 255,
+                                                        ], // 0 hsl(  0, 100%, 50%) bad color
+                                                        [0, 0, 0],
+                                                        [1, 1, 1],
+                                                ] as Color[]
+                                        }
                                 />
                                 {/* @ts-ignore */}
                                 <PerspectiveCamera
@@ -81,10 +114,9 @@ export const App = () => {
                                         near={0.05}
                                         position={[
                                                 0,
-                                                _({ x: 1.5 }).x,
-                                                _({ y: 10 }).y,
+                                                _({ x: 0.8 }).x, // _({ x: 1.5 }).x,
+                                                _({ y: 0.3 }).y, // _({ y: 10 }).y,
                                         ]}
-                                        // position={[0, _({ x: 0.8 }).x, _({ y: 0.3 }).y]}
                                 />
                                 <OrbitControls enableZoom={true} />
                                 <BakeShadows />

@@ -1,6 +1,7 @@
 import { useControls } from 'leva'
-import { changeLuminance } from '../colors'
 import { useMemo } from 'react'
+import { changeLuminance } from '../colors'
+import type { Color } from '../types'
 
 const { PI } = Math
 
@@ -32,7 +33,7 @@ export const LightM = () => {
                 },
                 { collapsed: true }
         )
-        const args = [1 / 40, 1 / 40, s, 8]
+        const args = [1 / 40, 1 / 40, s, 8] as any
         const neonColor = useMemo(
                 () => changeLuminance(color, luminance),
                 [color, luminance]
