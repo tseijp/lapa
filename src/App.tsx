@@ -8,14 +8,13 @@ import { Canvas } from '@react-three/fiber'
 import { canvas } from './styles'
 import { Game } from './Game'
 import { useLocationSearch } from './hooks'
-import { useControls as _, Leva } from 'leva'
+import { useControls as _ } from 'leva'
 import type { Color } from './types'
 
 export const App = () => {
         const search = useLocationSearch()
         return (
                 <>
-                        <Leva flat collapsed />
                         <Canvas
                                 shadows
                                 gl={{ antialias: false }}
