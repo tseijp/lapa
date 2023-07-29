@@ -1,11 +1,13 @@
-import { useGLTF, useAnimations } from '@react-three/drei'
+import { useAnimations } from '@react-three/drei'
 import { useEffect } from 'react'
 import { GroupProps } from '@react-three/fiber'
 
-export const Avatars = (props: GroupProps) => {
-        const { nodes, materials, animations } = useGLTF(
-                '/untitled.gltf'
-        ) as any
+export interface AvatarsProps extends GroupProps {
+        gltf: any
+}
+
+export const Avatars = (props: AvatarsProps) => {
+        const { nodes, materials, animations } = props.gltf
         const { ref, actions, names } = useAnimations(animations)
         console.log({ ref, actions, names })
         useEffect(() => {

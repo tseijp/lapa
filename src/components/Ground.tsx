@@ -1,14 +1,13 @@
-import { MeshReflectorMaterial, useGLTF } from '@react-three/drei'
+import { MeshReflectorMaterial } from '@react-three/drei'
 import { useControls } from 'leva'
 import type { ReflectorProps } from '@react-three/drei'
-import type { GameStatus } from '../types'
 
 export interface GroundProps extends Partial<ReflectorProps> {
-        _?: GameStatus
+        gltf: any
 }
 
 export const Ground = (props: GroundProps) => {
-        const { nodes, materials } = useGLTF('/untitled.gltf') as any
+        const { nodes, materials } = props.gltf
 
         const other = useControls(
                 'Ground',

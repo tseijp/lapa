@@ -1,13 +1,11 @@
-import { useGLTF } from '@react-three/drei'
 import { GroupProps } from '@react-three/fiber'
 
 export interface ModelProps extends GroupProps {
-        _?: any
+        gltf: any
 }
 
 export function Model(props: ModelProps) {
-        const { nodes, materials } = useGLTF('/untitled.gltf') as any
-
+        const { nodes, materials } = props.gltf
         return (
                 <group {...props} dispose={null}>
                         <mesh // @ts-ignore
@@ -65,5 +63,3 @@ export function Model(props: ModelProps) {
                 </group>
         )
 }
-
-useGLTF.preload('/untitled.gltf')

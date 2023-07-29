@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
         Avatars,
         Frame,
@@ -10,16 +10,16 @@ import {
         LightS,
         Model,
 } from './components'
-import { Html } from '@react-three/drei'
+import { Html, useGLTF } from '@react-three/drei'
 import { gameStatus, padItems, padItem, userItems, userItem } from './events'
 import { GameStatus, PadItems, PadItem, UserItems, UserItem } from './types'
 import { GameProvider, useGame, useForceUpdate } from './hooks'
 import { range } from './utils'
 
-const { PI } = Math
-
 export const Game = (props: Partial<GameStatus>) => {
         const [_] = useState(() => gameStatus(props))
+        const gltf = useGLTF('/untitled.gltf') as any
+
         _.update = useForceUpdate()
         return (
                 <GameProvider value={_}>
@@ -57,13 +57,19 @@ export const Game = (props: Partial<GameStatus>) => {
                                 ))}
                                 <LightM />
                                 <LightS />
-                                <Avatars position-y={-1.36} />
-                                <Ground mirror={1} position-y={-1.36} />
-                                <Model position-y={-1.36} />
+                                <Avatars gltf={gltf} position-y={-1.36} />
+                                <Ground
+                                        gltf={gltf}
+                                        mirror={1}
+                                        position-y={-1.36}
+                                />
+                                <Model gltf={gltf} position-y={-1.36} />
                         </group>
                 </GameProvider>
         )
 }
+
+useGLTF.preload('/untitled.gltf')
 
 export const Pads = (props: Partial<PadItems>) => {
         const _ = useGame()
