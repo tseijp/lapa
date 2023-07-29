@@ -52,14 +52,14 @@ export const Game = (props: Partial<GameStatus>) => {
                         </Html>
                         <group ref={_.ref}>
                                 <Pads />
-                                {/* {range(_.l).map((k) => (
+                                {range(_.l).map((k) => (
                                         <LightL key={k} z={2 + k * 2} />
                                 ))}
                                 <LightM />
                                 <LightS />
                                 <Avatars position-y={-1.36} />
                                 <Ground mirror={1} position-y={-1.36} />
-                                <Model position-y={-1.36} /> */}
+                                <Model position-y={-1.36} />
                         </group>
                 </GameProvider>
         )

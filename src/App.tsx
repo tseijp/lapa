@@ -113,8 +113,8 @@ export const App = () => {
                                         near={0.05}
                                         position={[
                                                 0,
-                                                _({ x: 0.8 }).x, // _({ x: 1.5 }).x,
-                                                _({ y: 0.3 }).y, // _({ y: 10 }).y,
+                                                _({ x: 1.5 }).x, // _({ x: 0.8 }).x, //
+                                                _({ y: 10 }).y, // _({ y: 0.3 }).y, //
                                         ]}
                                 />
                                 <OrbitControls enableZoom={true} />
