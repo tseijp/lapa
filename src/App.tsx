@@ -114,7 +114,7 @@ export const App = () => {
                                         position={[
                                                 0,
                                                 _({ x: 1.5 }).x, // _({ x: 0.8 }).x, //
-                                                _({ y: 10 }).y, // _({ y: 0.3 }).y, //
+                                                _({ y: 20 }).y, // _({ y: 0.3 }).y, //
                                         ]}
                                 />
                                 <OrbitControls enableZoom={true} />
