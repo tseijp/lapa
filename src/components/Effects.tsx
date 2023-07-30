@@ -4,7 +4,7 @@
 import { useRef, useEffect } from 'react'
 import { extend, useThree } from '@react-three/fiber'
 import { Effects as EffectsImpl } from '@react-three/drei'
-import { useControls as ctrl } from 'leva'
+import { useControls } from '../hooks'
 import {
         AfterimagePass,
         EffectComposer,
@@ -26,7 +26,7 @@ extend({
 export const Effects = () => {
         const afterimagePass = useRef<any>()
         const { scene, size, camera } = useThree()
-        const { damp } = ctrl(
+        const { damp } = useControls(
                 'AfterImatePass',
                 { damp: 0.6 },
                 { collapsed: true }
@@ -41,7 +41,7 @@ export const Effects = () => {
                 <EffectsImpl disableGamma>
                         {/* @ts-ignore */}
                         <unrealBloomPass
-                                {...ctrl(
+                                {...useControls(
                                         'UnrealBloomPass',
                                         {
                                                 threshold: 1,

@@ -1,4 +1,4 @@
-import { useControls } from 'leva'
+import { useControls } from '../hooks'
 import { changeLuminance } from '../colors'
 import { useMemo, useRef, useState } from 'react'
 import { GroupProps } from '@react-three/fiber'

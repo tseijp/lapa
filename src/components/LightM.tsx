@@ -1,7 +1,6 @@
-import { useControls } from 'leva'
+import { useControls } from '../hooks'
 import { useMemo } from 'react'
 import { changeLuminance } from '../colors'
-import type { Color } from '../types'
 
 const { PI } = Math
 

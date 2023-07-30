@@ -1,5 +1,5 @@
 import { MeshReflectorMaterial } from '@react-three/drei'
-import { useControls } from 'leva'
+import { useControls } from '../hooks'
 import type { ReflectorProps } from '@react-three/drei'
 
 export interface GroundProps extends Partial<ReflectorProps> {

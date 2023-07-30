@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
 import { Html, Sparkles } from '@react-three/drei'
-import { useControls } from 'leva'
-import { useGame } from '../hooks'
+import { useControls, useGame } from '../hooks'
 import { range } from '../utils'
 import { Neon } from './Neon'
 import { Flex } from './Flex'

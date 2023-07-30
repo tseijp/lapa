@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useControls } from 'leva'
+import { useControls } from '../hooks'
 import { PerspectiveCamera } from '@react-three/drei'
 import { useGame } from '../hooks'
 import { gsap } from 'gsap'
@@ -11,12 +11,12 @@ export const Camera = () => {
         const { x0, y0, z0, x1, y1, z1 } = useControls(
                 'Camera',
                 {
-                        x0: { value: 0, min: 0, max: 10 },
-                        y0: { value: 1.5, min: 0, max: 10 },
-                        z0: { value: 15, min: 0, max: 10 },
-                        x1: { value: 0, min: 0, max: 10 },
-                        y1: { value: 0.8, min: 0, max: 10 },
-                        z1: { value: 0.6, min: 0, max: 10 },
+                        x0: 0,
+                        y0: 1.5,
+                        z0: 15,
+                        x1: 0,
+                        y1: 0.8,
+                        z1: 0.6,
                 },
                 {
                         collapsed: true,

@@ -1,4 +1,5 @@
 import { useRef, useState, createContext, useContext, useEffect } from 'react'
+import { useControls as useControlsImpl } from 'leva'
 import type { GameStatus } from './types'
 
 export const GameContext = createContext(null as unknown as GameStatus)
@@ -6,6 +7,11 @@ export const GameContext = createContext(null as unknown as GameStatus)
 export const GameProvider = GameContext.Provider
 
 export const useGame = () => useContext(GameContext)
+
+// @ts-ignore
+export const useControls = import.meta.env.DEV
+        ? useControlsImpl
+        : (...args: any[]) => (typeof args[0] === 'string' ? args[1] : args[0])
 
 export const useForceUpdate = () => {
         const [, set] = useState(-1)
