@@ -43,7 +43,7 @@ export const App = (props: Partial<GameStatus>) => {
                                 />
                                 <Result />
                         </Canvas>
-                        <Leva flat collapsed />
+                        {/* <Leva flat collapsed /> */}
                         <Menu />
                 </GameProvider>
         )
