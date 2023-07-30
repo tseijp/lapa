@@ -41,7 +41,7 @@ export const Menu = () => {
                 <Flex
                         position="fixed"
                         userSelect="none"
-                        fontFamily="Courier New, Courier, monospace" // "Arial Black, Gadget, sans-serif" // "Impact, Charcoal, sans-serif"
+                        fontFamily="Courier New, Courier, monospace"
                         gap="2.5rem"
                         color="white"
                         paddingBottom="10rem"
@@ -61,8 +61,8 @@ export const Menu = () => {
                                         box
                                         c={rgb}
                                         i={i0}
-                                        width="7.5rem"
-                                        height="7.5rem"
+                                        minWidth="7.5rem"
+                                        minHeight="7.5rem"
                                         fontSize="1.5rem"
                                         display="flex"
                                         alignItems="center"
@@ -78,8 +78,8 @@ export const Menu = () => {
                                         box
                                         i={i1}
                                         c={rgb}
-                                        width="7.5rem"
-                                        height="7.5rem"
+                                        minWidth="7.5rem"
+                                        minHeight="7.5rem"
                                         fontSize="2.5rem"
                                         display="flex"
                                         alignItems="center"
@@ -96,8 +96,8 @@ export const Menu = () => {
                                         box
                                         c={rgb}
                                         i={i2}
-                                        width="7.5rem"
-                                        height="7.5rem"
+                                        minWidth="7.5rem"
+                                        minHeight="7.5rem"
                                         fontSize="2rem"
                                         display="flex"
                                         alignItems="center"

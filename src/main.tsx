@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client'
 import { Suspense, useState, lazy } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import { Menu, Result } from './components'
+import { Menu, Result, Fallback } from './components'
 import { gameStatus } from './events'
 import { GameProvider, useForceUpdate } from './hooks'
 import type { GameStatus, Color } from './types'
@@ -17,6 +17,7 @@ const canvasStyle = {
         width: '100%',
         height: '100%',
         position: 'fixed',
+        background: 'black',
 } as CSSProperties
 
 export const App = (props: Partial<GameStatus>) => {
@@ -32,7 +33,7 @@ export const App = (props: Partial<GameStatus>) => {
                         >
                                 <fog attach="fog" args={['#302020', 10, 25]} />
                                 <ambientLight />
-                                <Suspense>
+                                <Suspense fallback={<Fallback />}>
                                         <Game />
                                 </Suspense>
                                 <OrbitControls
@@ -42,7 +43,6 @@ export const App = (props: Partial<GameStatus>) => {
                                 />
                                 <Result />
                         </Canvas>
-                        {/* <Leva flat collapsed /> */}
                         <Menu />
                 </GameProvider>
         )

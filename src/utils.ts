@@ -66,7 +66,8 @@ export const checkReach = (items: UserItem[]) => {
         return (
                 (a === 2 && b === 3 && c === 3 && !d) ||
                 (a === 3 && b === 5 && !c) ||
-                (a === 2 && b === 6 && !c)
+                (a === 2 && b === 6 && !c) ||
+                (a === 8 && !b)
         )
 }
 

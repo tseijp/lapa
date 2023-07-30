@@ -16,7 +16,10 @@ export const Rig = ({ children }) => {
                         if (disabledRef.current) return
                         const x = e.clientX / window.innerWidth - 0.5
                         const y = e.clientY / window.innerHeight - 0.5
-                        ref.current.position.lerp(vec.set(x * 5, y * 5, 0), 0.1)
+                        ref.current.position.lerp(
+                                vec.set(x * 5, -y * 5, 0),
+                                0.1
+                        )
                         ref.current.rotation.y = THREE.MathUtils.lerp(
                                 -ref.current.rotation.y,
                                 (-x * Math.PI) / 20,
