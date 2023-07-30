@@ -4,6 +4,10 @@ assets/**/*
 public/**/*
 !public/*.gltf
 !public/og.jpg
+!public/_0.jpg
+!public/_1.jpg
+!public/_2.jpg
+!public/_3.jpg
 !public/favicon.ico
 *.blend
 **/*tmp*
