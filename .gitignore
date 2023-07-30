@@ -3,6 +3,8 @@
 assets/**/*
 public/**/*
 !public/*.gltf
+!public/og.jpg
+!public/favicon.ico
 *.blend
 **/*tmp*
 

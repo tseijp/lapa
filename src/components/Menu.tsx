@@ -3,11 +3,13 @@ import { useGame } from '../hooks'
 import { range } from '../utils'
 import { Neon } from './Neon'
 import { Flex } from './Flex'
+import { Tutorial } from './Tutorial'
 import type { Color } from '../types'
 
 export const Menu = () => {
         const [color, set] = useState([1, 1, 1] as Color)
         const [disabled, setDisabled] = useState(false)
+        const [pagination, setPagination] = useState(0)
         const [i_, setI_] = useState(5)
         const [i0, setI0] = useState(3)
         const [i1, setI1] = useState(3)
@@ -61,14 +63,19 @@ export const Menu = () => {
                                         box
                                         c={rgb}
                                         i={i0}
+                                        fontSize="1.5rem"
                                         minWidth="7.5rem"
                                         minHeight="7.5rem"
-                                        fontSize="1.5rem"
                                         display="flex"
                                         alignItems="center"
                                         flexDirection="column"
                                         justifyContent="center"
                                         borderRadius="9999px"
+                                        onClick={() =>
+                                                setPagination((p) =>
+                                                        p ? 0 : 1
+                                                )
+                                        }
                                         onMouseEnter={() => setI0(2)}
                                         onMouseLeave={() => setI0(3)}
                                 >
@@ -111,6 +118,82 @@ export const Menu = () => {
                                         onMouseLeave={() => setI2(3)}
                                 >
                                         Online
+                                </Neon>
+                        </Flex>
+                        <Flex
+                                fontSize="1rem"
+                                position="fixed"
+                                display={pagination ? 'flex' : 'none'}
+                                onClick={() => setPagination(0)}
+                        >
+                                <Neon
+                                        width="90%"
+                                        height="90%"
+                                        borderRadius="2.5rem"
+                                        boxSizing="border-box"
+                                        overflowY="scroll"
+                                        justifyContent="space-between"
+                                        backdropFilter="blur(15px)"
+                                        backgroundColor="rgba(0,0,0, 0.5)"
+                                        onClick={(e: any) =>
+                                                e.stopPropagation()
+                                        }
+                                >
+                                        <Tutorial pagination={pagination} />
+                                        <Flex
+                                                height="10rem"
+                                                row
+                                                gap="5rem"
+                                                bottom="5rem"
+                                        >
+                                                <Neon
+                                                        box
+                                                        i={3}
+                                                        fontSize="3rem"
+                                                        minWidth="5rem"
+                                                        minHeight="5rem"
+                                                        borderRadius="9999px"
+                                                        alignItems="center"
+                                                        flexDirection="column"
+                                                        justifyContent="center"
+                                                        display={
+                                                                pagination <= 1
+                                                                        ? 'none'
+                                                                        : 'flex'
+                                                        }
+                                                        onClick={() =>
+                                                                setPagination(
+                                                                        (p) =>
+                                                                                p -
+                                                                                1
+                                                                )
+                                                        }
+                                                >
+                                                        ◀︎
+                                                </Neon>
+                                                <Neon
+                                                        box
+                                                        i={3}
+                                                        fontSize="3rem"
+                                                        minWidth="5rem"
+                                                        minHeight="5rem"
+                                                        borderRadius="9999px"
+                                                        alignItems="center"
+                                                        flexDirection="column"
+                                                        justifyContent="center"
+                                                        display="flex"
+                                                        onClick={() =>
+                                                                setPagination(
+                                                                        (p) =>
+                                                                                (p +
+                                                                                        1) %
+                                                                                8
+                                                                )
+                                                        }
+                                                >
+                                                        ▶︎
+                                                </Neon>
+                                        </Flex>
                                 </Neon>
                         </Flex>
                 </Flex>
