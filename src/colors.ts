@@ -4,9 +4,16 @@ import { Color } from './types'
 
 export const switchUserLuminance = (_: GameStatus, self: UserItem) => {
         const { visible, active, pk } = self
+        const currentUserId = (_.t % _.m) + 1
         if (!visible) return 0.1
         if (active) return 5
-        if (_.t % _.m !== pk && _.hovered?.k === pk) return 2
+        // もし Reach していたら光らせる
+        if (_.users[self.pk].reach) {
+                const user = _.users[self.pk]
+                if (user.items.filter(({ v }) => v === self.v).length === 2)
+                        return 2
+        }
+        if (currentUserId % _.m !== pk && _.hovered?.k === pk) return 2
         return 1
 }
 

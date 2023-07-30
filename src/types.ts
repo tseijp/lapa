@@ -34,6 +34,7 @@ export interface GameStatus extends EventState<object> {
         hovered?: PadItems | UserItems | null
         _hovered?: PadItems | UserItems | null
         alert(): void
+        start(): void
         update(): void
         current(): void
         next(): void

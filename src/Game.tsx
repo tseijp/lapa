@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import {
         Avatars,
+        Camera,
+        Effects,
         Frame,
         Grid,
         Ground,
@@ -9,48 +11,23 @@ import {
         LightM,
         LightS,
         Model,
+        Rig,
 } from './components'
-import { Html, useGLTF } from '@react-three/drei'
-import { gameStatus, padItems, padItem, userItems, userItem } from './events'
-import { GameStatus, PadItems, PadItem, UserItems, UserItem } from './types'
-import { GameProvider, useGame, useForceUpdate } from './hooks'
+import { useGLTF } from '@react-three/drei'
+import { padItems, padItem, userItems, userItem } from './events'
+import { PadItems, PadItem, UserItems, UserItem } from './types'
+import { useGame, useForceUpdate } from './hooks'
 import { range } from './utils'
 
-export const Game = (props: Partial<GameStatus>) => {
-        const [_] = useState(() => gameStatus(props))
+export const Game = () => {
         const gltf = useGLTF('/untitled.gltf') as any
-
-        _.update = useForceUpdate()
+        const _ = useGame()
         return (
-                <GameProvider value={_}>
-                        <Html
-                                fullscreen
-                                style={{
-                                        fontSize: '2rem',
-                                        color: 'white',
-                                        pointerEvents: 'none',
-                                        userSelect: 'none',
-                                }}
-                        >
-                                t:{_.t}
-                                <br />
-                                {_.users?.[1]?.reach && " 1's reach"}
-                                <br />
-                                {_.users?.[2]?.reach && " 2's reach"}
-                                <br />
-                                {_.users?.[3]?.reach && " 3's reach"}
-                                <br />
-                                {_.users?.[4]?.reach && " 4's reach"}
-                                <br />
-                                {_.users?.[1]?.win && " 1's win"}
-                                <br />
-                                {_.users?.[2]?.win && " 2's win"}
-                                <br />
-                                {_.users?.[3]?.win && " 3's win"}
-                                <br />
-                                {_.users?.[4]?.win && " 4's win"}
-                        </Html>
-                        <group ref={_.ref}>
+                <group ref={_.ref}>
+                        <ambientLight />
+                        <Camera />
+                        <Effects />
+                        <Rig>
                                 <Pads />
                                 {range(_.l).map((k) => (
                                         <LightL key={k} z={2 + k * 2} />
@@ -64,8 +41,8 @@ export const Game = (props: Partial<GameStatus>) => {
                                         position-y={-1.36}
                                 />
                                 <Model gltf={gltf} position-y={-1.36} />
-                        </group>
-                </GameProvider>
+                        </Rig>
+                </group>
         )
 }
 
@@ -115,3 +92,5 @@ export const User = (props: Partial<UserItem>) => {
         self.update = useForceUpdate()
         return <Item self={self} />
 }
+
+export default Game

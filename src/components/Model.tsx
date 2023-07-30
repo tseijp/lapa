@@ -11,7 +11,7 @@ export function Model(props: ModelProps) {
                         <mesh // @ts-ignore
                                 geometry={nodes.Table.geometry}
                                 material={materials._table}
-                                position={[-1, 0.641, -0.5]}
+                                position={[-1, 0.641, -0.43]}
                                 rotation={[-Math.PI, 0, -Math.PI]}
                                 scale={[-0.025, -0.638, -0.017]}
                         />

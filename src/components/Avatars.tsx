@@ -9,9 +9,8 @@ export interface AvatarsProps extends GroupProps {
 export const Avatars = (props: AvatarsProps) => {
         const { nodes, materials, animations } = props.gltf
         const { ref, actions, names } = useAnimations(animations)
-        console.log({ ref, actions, names })
+
         useEffect(() => {
-                console.log({ ref, actions, names })
                 names.forEach((name) => {
                         actions[name]?.reset().fadeIn(0.5).play()
                 })

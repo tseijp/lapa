@@ -42,7 +42,7 @@ export const LightL = (props: LightLProps) => {
                         size: 1,
                         scale: 2.5,
                         luminance: 10,
-                        intensity: 0.1, // 1
+                        intensity: 1, // 1
                         distance: 10, // 0
                         decay: 2, // 2
                 },
