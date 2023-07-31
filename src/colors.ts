@@ -7,7 +7,6 @@ export const switchUserLuminance = (_: GameStatus, self: UserItem) => {
         const currentUserId = (_.t % _.m) + 1
         if (!visible) return 0.1
         if (active) return 5
-        // もし Reach していたら光らせる
         if (_.users[self.pk].reach) {
                 const user = _.users[self.pk]
                 if (user.items.filter(({ v }) => v === self.v).length === 2)
@@ -22,7 +21,7 @@ export const switchPadLuminance = (_: GameStatus, self: PadItem) => {
         if (_.select === self) return 5
         if (_._select === self) return 4
         if (visible) return 1
-        if (isVisibleNextColor(_, self)) {
+        if (isVisibleNextColor(_, self) && !_.select) {
                 if (isPairingPadItem(_, self)) return 0.1
                 else return 1
         }
