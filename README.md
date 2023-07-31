@@ -1,8 +1,8 @@
 # @tsei/lapa
 
-<img src="./public/og.jpg"></img>
-
-Copy code
+<a href="https://lapa.tsei.jp" target=”_blank” rel="noopener noreferrer">
+  <img src="./public/og.jpg"></img>
+</a>
 
 ## The Game Overview
 
@@ -13,7 +13,7 @@ This game is an original board game inspired by beloved classics like Mahjong. T
 
 </summary>
 
-このゲームは、麻雀のような古典にインスパイアされたオリジナルのボードゲームです。4 人のプレイヤーの中で、3 色のペアを 3 セット集めた方が勝ちです。
+このゲームは、麻雀のような人気のあるクラシックなゲームに触発されたオリジナルのボードゲームです。目標はシンプルでありながらも魅力的です:4人のプレイヤーの中で、最初に3つの色の組み合わせを3セット集めた人が勝利します。
 
 </details>
 
@@ -28,7 +28,7 @@ Players take turns choosing a tile from the 8x8 array in the center. Each player
 
 </summary>
 
-プレイヤーは中央の 8x8 の配列から順番に牌を選んでいきます。各プレイヤーは 8 枚のタイルを持ってスタートします。自分のタイルと選んだタイルを交換し、その色を明らかにします。すべてのタイルが公開されるか、手札に 3x3 の色のペアができたらゲーム終了です。
+プレイヤーは交互に中央の8x8の配列からタイルを選びます。各プレイヤーは8枚のタイルから始め、選んだタイルと自分のタイルを交換し、その色を明らかにします。ゲームは全てのタイルが明らかになった時、またはプレイヤーが手元で3x3の色のペアを形成した時に終了します。
 
 </details>
 <table>
@@ -49,7 +49,7 @@ There are rules on which tiles you can choose. One is that it must be adjacent t
 
 </summary>
 
-選べるタイルにはルールがあります。一つは、すでに公開されているタイルに隣接していること。さらに、あなたが持っている完全なセットと同じ色に隣接するタイルと交換することはできません。最後に、前のプレイヤーが捨てたタイルと交換することができます。
+選べるタイルにはルールがあります。一つは、既に明らかになったタイルに隣接していなければならないということです。さらに、持っている完全なセットと同じ色のタイルに隣接するタイルとは交換できません。最後に、前のプレイヤーが捨てたタイルと交換することができます。
 
 </details>
 
@@ -60,7 +60,7 @@ Balancing quick returns with the risk of enabling opponents to win forms the cor
 
 </summary>
 
-勝つために相手を有効にすることのリスクと迅速なリターンのバランスは、ゲームのコア戦略を形成しています。それは、プレイヤーがお互いの進歩を妨げることができる古典的なボードゲームの精神を取り入れています。
+素早いリターンと対戦相手に勝つチャンスを与えるリスクをバランス良くとることが、ゲームの中核戦略を形成します。これは、プレイヤーが互いの進行を妨げるクラシックなボードゲームの精神を取り入れています。
 
 </details></details>
 <table>
@@ -81,7 +81,7 @@ Inspired by the event theme, Party, the visuals echo a DJ event with a boiler ro
 
 </summary>
 
-イベントのテーマである「パーティー」にインスパイアされたビジュアルは、1 つの DJ セットを大勢が取り囲むボイラールーム形式の DJ イベントをイメージしています。
+イベントテーマである「パーティー」に触発されたビジュアルは、DJイベントのボイラールーム形式を反映しており、多くの人々が一つのDJセットを囲むような形をしています。
 
 </details>
 
@@ -94,7 +94,7 @@ The game's concept stems from the complexities of Mahjong. While preserving the 
 
 </summary>
 
-このゲームのコンセプトは、麻雀の複雑さに由来しています。オリジナルのゲームの面白さを保ちつつ、このバージョンでは急な学習曲線を排除し、楽しく親しみやすいものにすることで、深みを失うことなくシンプルさへの挑戦を成功させている。
+ゲームのコンセプトは、麻雀の複雑さから生まれています。オリジナルのゲームの面白い要素を保ちつつ、このバージョンでは急な学習曲線を排除し、楽しくアクセス可能にしています。そのため、深みを失うことなくシンプルさへの挑戦に成功しています。
 
 </details>
 
@@ -107,6 +107,6 @@ This game is a journey that starts with simple rules but ends with dynamic strat
 
 </summary>
 
-このゲームは、シンプルなルールで始まり、ダイナミックな戦略と予想外の結果で終わります。思い出に残るパーティーの準備をしよう！
+このゲームは、シンプルなルールから始まり、ダイナミックな戦略と予想外の結果で終わる旅です。思い出に残るパーティーの準備を！
 
 </details>
