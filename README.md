@@ -1,7 +1,7 @@
-# @tsei/lapa
+# 🚥@tsei/lapa
 
-<a href="https://lapa.tsei.jp" target=”_blank” rel="noopener noreferrer">
-  <img src="./public/og.jpg"></img>
+<a href="https://lapa.tsei.jp">
+  <img src="https://lapa.tsei.jp/og.jpg"></img>
 </a>
 
 ## The Game Overview
@@ -62,7 +62,7 @@ Balancing quick returns with the risk of enabling opponents to win forms the cor
 
 素早いリターンと対戦相手に勝つチャンスを与えるリスクをバランス良くとることが、ゲームの中核戦略を形成します。これは、プレイヤーが互いの進行を妨げるクラシックなボードゲームの精神を取り入れています。
 
-</details></details>
+</details>
 <table>
 <td>
 <img src="./public/_0.jpg"></img>
