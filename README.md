@@ -1,7 +1,7 @@
-# 🚥@tsei/lapa
+# 🚥lapa
 
 <a href="https://lapa.tsei.jp">
-  <img src="https://lapa.tsei.jp/og.jpg"></img>
+  <img alt="🚥" src="https://lapa.tsei.jp/og.jpg"></img>
 </a>
 
 ## The Game Overview
